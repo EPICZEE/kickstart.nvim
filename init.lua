@@ -239,6 +239,21 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   { 'ThePrimeagen/vim-be-good' },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      local configs = require 'nvim-treesitter.configs'
+
+      configs.setup {
+        ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'html', 'javascript', 'cpp', 'python', 'java' },
+        sync_install = false,
+        highlight = { enable = true },
+        indent = { enable = true },
+      }
+    end,
+  },
+
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- NOTE: Plugins can also be added by using a table,
